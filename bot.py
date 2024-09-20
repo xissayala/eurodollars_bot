@@ -7,7 +7,6 @@ from apscheduler.schedulers.asyncio import AsyncIOScheduler
 def main():
     app = ApplicationBuilder().token(TOKEN).build()
 
-    # Регистрация команд
     app.add_handler(CommandHandler('profile', profile))
     app.add_handler(CommandHandler('work', work))
     app.add_handler(CommandHandler('setname', set_name))
@@ -15,12 +14,10 @@ def main():
     app.add_handler(CommandHandler("toplvl", top_level))
     app.add_handler(CommandHandler("topcash", top_cash))
 
-    # Регистрация обработчика сообщений
     app.add_handler(MessageHandler(filters.TEXT, handle_message))
 
-    # Настройка планировщика
     scheduler = AsyncIOScheduler()
-    scheduler.add_job(check_for_completed_work, 'interval', minutes=1)  # Проверяем каждую минуту
+    scheduler.add_job(check_for_completed_work, 'interval', minutes=1)
     scheduler.start()
 
     app.run_polling()
