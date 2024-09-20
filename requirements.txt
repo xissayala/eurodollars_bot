@@ -1,0 +1,3 @@
+python-telegram-bot==20.0  # Или последняя версия
+psycopg2-binary==2.9.1      # Для работы с PostgreSQL
+APScheduler==3.9.1           # Для планировщика задач
